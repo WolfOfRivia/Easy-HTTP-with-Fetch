@@ -1,69 +1,30 @@
-/**
-* EasyHTTP Library
-* Library for making HTTP Request
-*
-* @version 2
-* @author Brad Traversy
-* @License MIT
-*
-**/
+const http = new EasyHTTP;
 
-class EasyHTTP {
-  // Make an HTTP GET Request
-  get(url) {
-    return new Promise((resolve, reject) => {
-      fetch(url)
-        .then(res => res.json())
-        .then(data => resolve(data))
-        .catch(err => reject(err));
-    });
-  }
+// get users
+/*
+http.get('https://jsonplaceholder.typicode.com/users')
+.then(data => console.log(data))
+.catch(err => console.log(err)); */
 
-  // Make an HTTP POST Request
-  post(url, data) {
-    return new Promise((resolve, reject) => {
-      fetch(url, {
-        method: 'POST',
-        headers: {
-          'Content-type': 'application/json'
-        },
-        body: JSON.stringify(data)
-      })
-        .then(res => res.json())
-        .then(data => resolve(data))
-        .catch(err => reject(err));
-    });
-  }
-
-  // Make an HTTP PUT Request
-  put(url, data) {
-    return new Promise((resolve, reject) => {
-      fetch(url, {
-        method: 'PUT',
-        headers: {
-          'Content-type': 'application/json'
-        },
-        body: JSON.stringify(data)
-      })
-        .then(res => res.json())
-        .then(data => resolve(data))
-        .catch(err => reject(err));
-    });
-  }
-
-  // Make an HTTP Delete Request
-  delete(url) {
-    return new Promise((resolve, reject) => {
-      fetch(url, {
-        method: 'DELETE',
-        headers: {
-          'Content-type': 'application/json'
-        }
-      })
-        .then(res => res.json())
-        .then(() => resolve('Resource Deleted'))
-        .catch(err => reject(err));
-    });
-  }
-
+// create new user
+const user = {
+  username: 'johnnyDoey',
+  email: 'jdoe@gmail.com'
 }
+
+// add user
+/*
+http.post('https://jsonplaceholder.typicode.com/users', user)
+.then(data => console.log(data))
+.catch(err => console.log(err)); */
+
+// replace user
+/*
+http.put('https://jsonplaceholder.typicode.com/users/3', user)
+.then(data => console.log(data))
+.catch(err => console.log(err)); */
+
+// delete user
+http.delete('https://jsonplaceholder.typicode.com/users/5')
+.then(data => console.log(data))
+.catch(err => console.log(err));
